@@ -25,7 +25,7 @@
 						<label for="yearsOfMortgage" >Years of mortgage</label>
 						<div class="slider-container">
 							<span>1</span>
-							<input type="range" class="slider" id="yearsOfMortgage" min="1" max="40" value="30" />
+							<input type="range" class="slider" id="yearsOfMortgage" min="1" max="40" value="30" oninput="updateSliderTextField(this, this.value)" />
 							<span>40</span>
 							<input type="text" id="yearsOfMortageText" value="30" readonly />
 						</div>
@@ -35,7 +35,7 @@
 						<label for="rateOfInterest">Rate of interest (%)</label>
 						<div class="slider-container">
 							<span>0.1</span>
-							<input type="range" class="slider" id="rateOfInterest" min="0.1" max="10" step="0.1" value="8.0" />
+							<input type="range" class="slider" min="0.1" max="10" step="0.1" value="8.0" oninput="updateSliderTextField(this, this.value)" />
 							<span>10</span>
 							<input type="text" id="rateOfInterest" value="8.0" readonly />
 						</div>
@@ -45,26 +45,29 @@
 						<label for="loanAmount">Loan Amount</label>
 						<div class="currency-field">
 							<span>$</span>
-							<input type="text" id="loanAmount" />
+							<input type="text" id="loanAmount" onkeypress="validateCurrencyInput(this, event)" />
 						</div>
+						<div id="loanAmountError" class="field-error field-error-hidden error-loan-amount"></div>
 					</div>
 					<div class="calculator-inputs-field side-by-side-field-container">
 						<div>
 							<label for="annualTax">Annual Tax</label>
 							<div class="currency-field">
 								<span>$</span>
-								<input type="text" id="annualTax" />
+								<input type="text" id="annualTax" onkeypress="validateCurrencyInput(this, event)" />
 							</div>
+							<div id="annualTaxError" class="field-error field-error-hidden error-annual-tax"></div>
 						</div>
 						<div>
 							<label for="annualInsurance">Annual Insurance</label>
 							<div class="currency-field">
 								<span>$</span>
-								<input type="text" id="annualInsurance" />
+								<input type="text" id="annualInsurance" onkeypress="validateCurrencyInput(this, event)" />
 							</div>
+							<div id="annualInsuranceError" class="field-error field-error-hidden error-annual-insurance"></div>
 						</div>
 					</div>
-					<input type="button" value="CALCULATE" id="calculateButton" class="calculate-button" />
+					<input type="button" value="CALCULATE" id="calculateButton" class="calculate-button" onclick="onCalculateMortgage()"/>
 				</form>
 			</div>
 			<!-- RESULTS -->
@@ -74,19 +77,19 @@
 				</div>
 				<div class="sub-result">
 					<label class="result-label">Principle &amp; Interest</label>
-					<label class="result-value" id="principleAndInterestLabel">$ 733.27</label>
+					<label class="result-value no-value" id="principleAndInterestLabel">$ - -</label>
 				</div>
 				<div class="sub-result">
 					<label class="result-label">Tax</label>
-					<label class="result-value" id="taxLabel">$ 83.33</label>
+					<label class="result-value no-value" id="taxLabel">$ - -</label>
 				</div>
 				<div class="sub-result">
 					<label class="result-label">Insurance</label>
-					<label class="result-value" id="insuranceLabel">$ 25.00</label>
+					<label class="result-value no-value" id="insuranceLabel">$ - -</label>
 				</div>
 				<div class="result-total">
 					<label class="result-label">Total Monthly Payment</label>
-					<label class="result-value " id="totalPaymentLabel">$ 841.60</label>
+					<label class="result-value no-value" id="totalPaymentLabel">$ - -</label>
 				</div>
 			</div>
 		</div>

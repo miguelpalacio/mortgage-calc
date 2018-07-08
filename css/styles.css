@@ -58,6 +58,10 @@
 	border-radius: 4px;
 }
 
+.calculator-inputs-field input[type=text].error {
+	border: 1px solid #da3535;
+}
+
 .calculator-inputs-field span {
 	margin-top: 15px;
 }
@@ -125,6 +129,27 @@
 	left: 20px;
 }
 
+/* Error display */
+.field-error {
+	color: red;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 0.3px;
+	margin-top: 2px;
+}
+.field-error.field-error-hidden {
+	display: none;
+}
+.field-error.error-loan-amount::after {
+	content: "Loan Amount is mandatory";
+}
+.field-error.error-annual-tax::after {
+	content: "Annual Tax is mandatory";
+}
+.field-error.error-annual-insurance::after {
+	content: "Annual Insurance is mandatory";
+}
+
 .result-label {
 	color: #3e3d3f;
 	font-size: 14px;
@@ -141,6 +166,10 @@
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 30px;
+}
+
+.result-value.no-value {
+	opacity: 0.2;
 }
 
 .result-total .result-value {
@@ -266,6 +295,16 @@
 
 	.currency-field span {
 		margin-top: 19px;
+	}
+
+	.field-error.error-loan-amount::after {
+		content: "Mandatory field";
+	}
+	.field-error.error-annual-tax::after {
+		content: "Mandatory field";
+	}
+	.field-error.error-annual-insurance::after {
+		content: "Mandatory field";
 	}
 
 	.result-label {
