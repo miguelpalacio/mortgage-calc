@@ -15,6 +15,7 @@
 			<h2>Mortgage Calculator</h2>
 		</div>
 		<div class="calculator-body">
+			<!-- INPUTS -->
 			<div class="calculator-inputs">
 				<div class="calculator-inputs-sub-header">
 					Change values to calculate your results
@@ -63,28 +64,29 @@
 							</div>
 						</div>
 					</div>
-					<input type="button" value="CALCULATE" class="calculate-button" />
+					<input type="button" value="CALCULATE" id="calculateButton" class="calculate-button" />
 				</form>
 			</div>
+			<!-- RESULTS -->
 			<div class="calculator-results">
 				<div>
 					<h2>Your results</h2>
 				</div>
-				<div>
-					<label>Principle &amp; Interest</label>
-					<label id="principleAndInterestLabel">$ 733.27</label>
+				<div class="sub-result">
+					<label class="result-label">Principle &amp; Interest</label>
+					<label class="result-value" id="principleAndInterestLabel">$ 733.27</label>
 				</div>
-				<div>
-					<label>Tax</label>
-					<label id="taxLabel">$ 83.33</label>
+				<div class="sub-result">
+					<label class="result-label">Tax</label>
+					<label class="result-value" id="taxLabel">$ 83.33</label>
 				</div>
-				<div>
-					<label>Insurance</label>
-					<label id="insuranceLabel">$ 25.00</label>
+				<div class="sub-result">
+					<label class="result-label">Insurance</label>
+					<label class="result-value" id="insuranceLabel">$ 25.00</label>
 				</div>
-				<div>
-					<label>Total Monthly Payment</label>
-					<label id="totalPaymentLabel">$ 841.60</label>
+				<div class="result-total">
+					<label class="result-label">Total Monthly Payment</label>
+					<label class="result-value " id="totalPaymentLabel">$ 841.60</label>
 				</div>
 			</div>
 		</div>
