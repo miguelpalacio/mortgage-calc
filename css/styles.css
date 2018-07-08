@@ -1,0 +1,143 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+.calculate-button {
+	font-size: 16px;
+	letter-spacing: 0.3px;
+	font-weight: bold;
+	color: white;
+	background-color: #0077c0;
+	width: 100%;
+	height: 45px;
+	border: none;
+	border-radius: 4px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.calculator {
+	max-width: 900px;
+	margin: auto;
+	padding: 10px 30px;
+}
+
+.calculator-body {
+	/* height: 700px; */
+	margin: 26px 40px;
+	display: flex;
+}
+
+.calculator-inputs {
+	width: 390px;
+	margin: 0;
+	border-radius: 4px;
+	padding: 34px 39px 34px 40px;
+	box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-inputs-field {
+	margin-top: 25px;
+}
+
+.calculator-inputs-field label {
+	color: #3e3d3f;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 17px;
+	letter-spacing: 0.2px;
+}
+
+.calculator-inputs-field input[type=text] {
+	color: #3e3d3f;
+	font-size: 16px;
+	letter-spacing: 0.3px;
+	height: 45px;
+	border: 1px solid #cacaca;
+	border-radius: 4px;
+}
+
+.calculator-inputs-field span {
+	margin-top: 15px;
+}
+
+.calculator-inputs-sub-header {
+	color: #3e3d3f;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.3px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #cbcbcb;
+}
+
+.calculator-header {
+	position: relative;
+	height: 55px;
+	border-bottom: 1px solid #cacaca;
+}
+
+.calculator-header h2 {
+	position: absolute;
+	font-size: 22px;	
+	line-height: 30px;
+	color: #005175;
+	margin: 0; 
+	bottom: 15px;
+}
+
+/* Currency fields */
+.currency-field {
+	position: relative;
+	display: flex;
+}
+.currency-field input[type=text] {
+	flex: 1;
+	margin-top: 7px;
+	padding-left: 32px;
+}
+.currency-field span {
+	margin-top: 22px;
+	color: #3e3d3f;
+	font-size: 16px;
+	position: absolute;
+	left: 20px;
+}
+
+/* Form sliders */
+.slider {
+	flex: 1;
+}
+.slider-container {
+	display: flex;
+}
+.slider-container input[type=text] {
+	width: 60px;
+	text-align: center;
+	margin-left: 14px;
+}
+.slider-container span {
+	color: #3e3d3f;
+	font-size: 16px;
+	letter-spacing: 0.3px;
+	width: 30px;
+	text-align: center;
+}
+
+/*  */
+.side-by-side-field-container {
+	display: flex;
+	/* space-between has issues in IE11. See workaround in IE-specific media query below */
+	justify-content: space-between;
+}
+.side-by-side-field-container .currency-field input[type=text] {
+	max-width: 152px;
+	width: 100%;
+}
+
+/* IE10+ workarounds */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	/* Set a min-width in "side-by-side" currency inputs so that they're properly displayed */
+    .side-by-side-field-container .currency-field input[type=text] {
+        min-width: 152px;
+    }
+}
