@@ -18,6 +18,8 @@ function onCalculateMortgage() {
 	updateResultLabels(result);
 	darkenResultValueLabels();
 	renameCalculateButton();
+
+	showResultsPanel();
 }
 
 // -------------------------------------
@@ -104,7 +106,7 @@ function calculateMonthlyPayment (result) {
 // -------------------------------------
 
 function updateResultLabels (result) {
-	for (const key in result) {
+	for (let key in result) {
 		const $label = document.getElementById(key + 'Label');
 		const value = result[key];
 
@@ -118,19 +120,53 @@ function updateResultLabels (result) {
 // Misc
 // -------------------------------------
 
+// Show calculator-results panel (this only affects mobile devices or narrow screens setups)
+function showResultsPanel () {
+	const $calculatorResultsPanel = document.getElementById('calculator-results');
+
+	// Only show animation the first time the 'Calculate' button is clicked, and if
+	// mobile media query applies.
+	if (window.matchMedia('screen and (max-width: 920px)').matches &&
+		$calculatorResultsPanel.classList.contains('hide-results')) {
+		const animation = $calculatorResultsPanel.animate(
+			[
+				// From
+				{
+					opacity: '0',
+					transform: 'translateY(-30px)'
+				},
+				// To
+				{
+					opacity: '1',
+					transform: 'translateY(0)'
+				}
+			],
+			{
+				duration: 350,
+				easing: 'ease-in',
+				iterations: 1
+			}
+		);
+
+		animation.play();
+	}
+
+	$calculatorResultsPanel.classList.remove('hide-results');
+}
+
 // Live updates of text fields beside the sliders
-function updateSliderTextField(slider, value) {
-	$textField = slider.nextElementSibling.nextElementSibling;
+function updateSliderTextField (slider, value) {
+	const $textField = slider.nextElementSibling.nextElementSibling;
 	$textField.value = value;
 }
 
-function renameCalculateButton() {
+function renameCalculateButton () {
 	document.getElementById('calculateButton').value = 'RECALCULATE';
 }
 
 // Remove opacity property of result-label elements
-function darkenResultValueLabels() {
-	$resultValueElems = document.getElementsByClassName('result-value');
+function darkenResultValueLabels () {
+	const $resultValueElems = document.getElementsByClassName('result-value');
 	for (let i = 0, l = $resultValueElems.length; i < l; i++) {
 		const elem = $resultValueElems.item(i);
 		elem.classList.remove('no-value');
