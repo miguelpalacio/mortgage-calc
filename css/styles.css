@@ -1,3 +1,7 @@
+/* ----------------------------------------- */
+/*  Bases classes							 */
+/* ----------------------------------------- */
+
 * {
 	font-family: 'Roboto', sans-serif;
 }
@@ -34,6 +38,7 @@
 	padding: 34px 39px 34px 40px;
 	box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
 	background-color: white;
+	z-index: 0;	 /* Edge needs a z-index defined in all the containers or the stacking context won't work */
 }
 
 .calculator-inputs-field {
@@ -187,14 +192,8 @@
 /* Form sliders */
 .slider {
 	flex: 1;
-	
-	/* Custom slider style */
-
 	margin-top: 19px;
 	height: 10px;
-	/* appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none; */
 }
 .slider-container {
 	display: flex;
@@ -227,6 +226,129 @@
 }
 
 /* ----------------------------------------- */
+/* SPECIAL ELEMENTS						 	 */
+/* ----------------------------------------- */
+
+/* CUSTOM SLIDERS */
+/* Based on https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
+/* -------- Base classes -------- */
+
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+}
+
+/* -------- Slider thumb -------- */
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.27); /* Add cool effects to your sliders! */
+  border: none;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #efefef;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -8px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.27);
+  border: none;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #efefef;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.27);
+  border: none;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #efefef;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* -------- Slider track -------- */
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #1091cc;
+  border-radius: 100px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #1091cc;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #1091cc;
+  border-radius: 100px;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+
+/* ----------------------------------------- */
 /* ANIMATIONS 								 */
 /* ----------------------------------------- */
 
@@ -247,7 +369,6 @@
 
 /* Phones */
 @media screen and (max-width: 920px) {
-
 	.calculate-button {
 		font-size: 14px;
 		letter-spacing: 0.6px;
@@ -354,11 +475,18 @@
 		line-height: 21px;
 	}
 
+	.slider {
+		margin-top: 17px;
+	}
 	.slider-container {
-		height: 43px;
+		height: 44px;
 	}
 	.slider-container input[type=text] {
 		width: 50px;
+	}
+
+	.slider-container span {
+		margin-top: 12px;
 	}
 
 	.side-by-side-field-container .currency-field input[type=text] {
@@ -368,6 +496,12 @@
 
 /* IE10+ workarounds */
 
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.slider {
+		margin-top: 3px;
+	}
+}
+
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 921px) {
 	/* Set a min-width in "side-by-side" currency inputs so that they're properly displayed */
     .side-by-side-field-container .currency-field input[type=text] {
@@ -376,7 +510,6 @@
 
 	.slider {
 		margin-top: 3px;
-		/* background: none; */
 	}
 }
 

@@ -56,6 +56,11 @@ function highlightCurrencyInputErrors (formIsValid, fieldId) {
 
 // Do not allow non-numeric characters (only allow ONE '.' for decimals)
 function validateCurrencyInput(textField, event) {
+	// Firefox behaves differently with backspace, so it needs to be handled apart
+	if (event.code === 'Backspace') {
+		return;
+	}
+
 	// Workaround for IE's lack of "String.includes" support
 	let pointPresent = false;
 	const value = textField.value;
