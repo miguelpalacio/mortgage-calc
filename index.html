@@ -25,7 +25,7 @@
 						<label for="yearsOfMortgage" >Years of mortgage</label>
 						<div class="slider-container">
 							<span>1</span>
-							<input type="range" class="slider" id="yearsOfMortgage" min="1" max="40" value="30" oninput="updateSliderTextField(this, this.value)" />
+							<input type="range" class="slider" id="yearsOfMortgage" min="1" max="40" value="30" oninput="updateSliderTextField(this, this.value)" onchange="updateSliderTextFieldIE(this, this.value)" />
 							<span>40</span>
 							<input type="text" id="yearsOfMortage" value="30" readonly />
 						</div>
@@ -35,7 +35,7 @@
 						<label for="rateOfInterest">Rate of interest (%)</label>
 						<div class="slider-container">
 							<span>0.1</span>
-							<input type="range" class="slider" min="0.1" max="10" step="0.1" value="8.0" oninput="updateSliderTextField(this, this.value)" />
+							<input type="range" class="slider" min="0.1" max="10" step="0.1" value="8.0" oninput="updateSliderTextField(this, this.value)" onchange="updateSliderTextFieldIE(this, this.value)" />
 							<span>10</span>
 							<input type="text" id="rateOfInterest" value="8.0" readonly />
 						</div>

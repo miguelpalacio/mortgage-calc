@@ -33,7 +33,7 @@
 	border-radius: 4px;
 	padding: 34px 39px 34px 40px;
 	box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.1);
-	z-index: 1;
+	background-color: white;
 }
 
 .calculator-inputs-field {
@@ -94,6 +94,15 @@
 	width: 222px;
 	margin: 40px 0 35px 0;
 	padding: 35px 40px 35px 36px;
+	z-index: -1;
+}
+
+.calculator-results.show-calculator-results {
+	animation-name: showCalculatorResultsAnimation;
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+
+	animation-timing-function: ease-in-out;
 }
 
 .calculator-results > div {
@@ -218,7 +227,22 @@
 }
 
 /* ----------------------------------------- */
-/* MEDIA QUERIES */
+/* ANIMATIONS 								 */
+/* ----------------------------------------- */
+
+@keyframes showCalculatorResultsAnimation {
+	0% {
+		opacity: 0.5;
+		transform: translateY(-300px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ----------------------------------------- */
+/* MEDIA QUERIES 							 */
 /* ----------------------------------------- */
 
 /* Phones */
@@ -343,7 +367,8 @@
 }
 
 /* IE10+ workarounds */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (min-width: 921px) {
 	/* Set a min-width in "side-by-side" currency inputs so that they're properly displayed */
     .side-by-side-field-container .currency-field input[type=text] {
         min-width: 152px;
@@ -352,5 +377,12 @@
 	.slider {
 		margin-top: 3px;
 		/* background: none; */
+	}
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) and (max-width: 920px) {
+	/* Set a min-width in "side-by-side" currency inputs so that they're properly displayed */
+    .side-by-side-field-container .currency-field input[type=text] {
+        min-width: 88px;
 	}
 }

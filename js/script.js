@@ -128,27 +128,7 @@ function showResultsPanel () {
 	// mobile media query applies.
 	if (window.matchMedia('screen and (max-width: 920px)').matches &&
 		$calculatorResultsPanel.classList.contains('hide-results')) {
-		const animation = $calculatorResultsPanel.animate(
-			[
-				// From
-				{
-					opacity: '0',
-					transform: 'translateY(-30px)'
-				},
-				// To
-				{
-					opacity: '1',
-					transform: 'translateY(0)'
-				}
-			],
-			{
-				duration: 350,
-				easing: 'ease-in',
-				iterations: 1
-			}
-		);
-
-		animation.play();
+		$calculatorResultsPanel.classList.add('show-calculator-results');
 	}
 
 	$calculatorResultsPanel.classList.remove('hide-results');
@@ -158,6 +138,14 @@ function showResultsPanel () {
 function updateSliderTextField (slider, value) {
 	const $textField = slider.nextElementSibling.nextElementSibling;
 	$textField.value = value;
+}
+
+function updateSliderTextFieldIE (slider, value) {
+	// Only applies for Internet Explorer 11
+	if (navigator.appVersion.indexOf('Trident') !== -1) {
+		const $textField = slider.nextElementSibling.nextElementSibling;
+		$textField.value = value;
+	}
 }
 
 function renameCalculateButton () {
